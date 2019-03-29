@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -16,14 +17,21 @@ class Server extends Component {
     }
 
     getServers() {
-        const servers = [
-            {
-                name: 'Lepus',
-                state: 'Crashed'
-            }
-        ]
+        var token = localStorage.getItem('token');
 
-        this.setState({servers})
+        axios.get(`http://localhost:5001/v1/resources`,{ headers: { Authorization: "Bearer " + token } } )
+            .then(res => {
+                console.log(res.data)
+                this.setState({servers: res.data})               
+            })
+            .catch(error => {
+                console.log(error);
+
+                if(error.response && error.response.status && error.response.status === 403) {
+                    
+                }               
+               
+            }) 
     }
 
     mountServers() {
@@ -36,10 +44,10 @@ class Server extends Component {
         } else {
             return servers.map(server => {
                 return <ListItem>                            
-                            <Avatar>
+                            <Avatar style={server.status == 'on'? {backgroundColor: 'green'}: {backgroundColor: 'red'} }>
                                 <Dns/>
                             </Avatar>
-                        <ListItemText primary={server.name} secondary={server.state} /></ListItem>
+                        <ListItemText primary={server.name} secondary={server.status + ' desde de ' + server.modificationDate } /></ListItem>
             })
         }
     }

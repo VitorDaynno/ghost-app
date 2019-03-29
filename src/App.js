@@ -27,9 +27,9 @@ class App extends Component {
           <Grid item xs={4}>
             <Card>
               <CardHeader title="Servidores"/>
-              <CardContent>
-                <Server/>
-              </CardContent>
+                
+                  <Server/>
+                
             </Card>
           </Grid>
           <Grid item xs={4}>
