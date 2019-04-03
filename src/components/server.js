@@ -19,7 +19,7 @@ class Server extends Component {
     getServers() {
         var token = localStorage.getItem('token');
 
-        axios.get(`http://localhost:5001/v1/resources`,{ headers: { Authorization: "Bearer " + token } } )
+        axios.get(`/v1/resources`,{ headers: { Authorization: "Bearer " + token } } )
             .then(res => {
                 console.log(res.data)
                 this.setState({servers: res.data})               
