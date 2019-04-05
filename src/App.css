@@ -1,5 +1,22 @@
 .App {
   padding: 20px;
-  background-color: #565656;
-  min-height: 100vh;
+  background-image: url('./assets/img/wolf.png');
+  background-size: 30%;
+  background-position-x: right;
+  background-color: #A5F2F3;
+  background-position-y: bottom; 
+  background-repeat: no-repeat;
+  min-height: 95vh;
+}
+
+.columns {
+  padding-top: 10px;
+}
+
+.type-title {
+  text-align: center;
+}
+
+.no-item {
+  text-align: center;
 }

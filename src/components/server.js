@@ -5,7 +5,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Dns from '@material-ui/icons/Dns';
-
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 class Server extends Component {
     state = {
@@ -13,7 +14,7 @@ class Server extends Component {
     }
     
     componentDidMount() {
-        this.getServers();
+        this.getServers();        
     }
 
     getServers() {
@@ -38,16 +39,18 @@ class Server extends Component {
         const { servers } = this.state;
 
         if (servers.length === 0 ){
-            return <span>
-                        Nenhum servidor encontrado
-                    </span>
+            return <Typography  className='no-item'>
+                        Não existem bancos cadastrados
+                    </Typography> 
         } else {
             return servers.map(server => {
-                return <ListItem>                            
-                            <Avatar style={server.status == 'on'? {backgroundColor: 'green'}: {backgroundColor: 'red'} }>
+                return <Grid item xs={6}>
+                        <ListItem>                            
+                            <Avatar style={server.status === 'on'? {backgroundColor: 'green'}: {backgroundColor: 'red'} }>
                                 <Dns/>
                             </Avatar>
-                        <ListItemText primary={server.name} secondary={server.status + ' desde de ' + server.modificationDate } /></ListItem>
+                        <ListItemText primary={server.name} secondary={server.modificationDate } /></ListItem>
+                        </Grid>
             })
         }
     }
@@ -56,8 +59,10 @@ class Server extends Component {
 
         return (
         <div>
-            <List>     
+            <List>  
+            <Grid container spacing={5}>   
                 {this.mountServers()}
+                </Grid>
             </List>             
         </div>
     );

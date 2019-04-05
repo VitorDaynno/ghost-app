@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 import Server from './components/server'
 import './App.css';
-
-
 
 class App extends Component {
   
@@ -17,28 +14,32 @@ class App extends Component {
       <div className="App">
         <Grid container spacing={24}>
           <Grid item xs={4}>
-            <Card>
-              <CardHeader title="Serviços"/>
-              <CardContent>
-                Nenhum serviço encontrado.
-              </CardContent>
-            </Card>
+            <Paper className="columns">
+              <Typography variant="h5" className='type-title'>
+                Serviços
+              </Typography> 
+              <Typography  className='no-item'>
+                Não existem serviços cadastrados
+              </Typography>                         
+            </Paper>
+          </Grid>
+          <Grid item  xs={4}>
+            <Paper className="columns">
+              <Typography variant="h5" className='type-title'>
+                Servidores
+              </Typography>
+              <Server/>              
+            </Paper>
           </Grid>
           <Grid item xs={4}>
-            <Card>
-              <CardHeader title="Servidores"/>
-                
-                  <Server/>
-                
-            </Card>
-          </Grid>
-          <Grid item xs={4}>
-            <Card>
-              <CardHeader title="Bancos"/>
-              <CardContent>
-                Nenhum banco encontrado.
-              </CardContent>
-            </Card>
+            <Paper className="columns">
+              <Typography variant="h5" className='type-title'>
+                Bancos
+              </Typography>
+              <Typography  className='no-item'>
+                Não existem bancos cadastrados
+              </Typography>               
+            </Paper>
           </Grid>
         </Grid>
       </div>
