@@ -14,7 +14,7 @@ class Server extends Component {
     }
     
     componentDidMount() {
-        this.getServers();        
+        setInterval(() => { this.getServers() }, 5000);        
     }
 
     getServers() {
